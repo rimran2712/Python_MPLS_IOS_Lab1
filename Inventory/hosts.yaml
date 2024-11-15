@@ -1,0 +1,47 @@
+---
+# Managment Subnet for Automation Interface mgmt vrf: 172.16.100.x/30
+# x: is subnet ID as per interface connected with MGMT Switch 
+
+PE1:
+    hostname: 172.16.100.14
+    groups:
+        - cisco_group
+
+PE2:
+    hostname: 172.16.100.18
+    groups:
+        - cisco_group
+CORE1:
+    hostname: 172.16.100.22
+    groups:
+        - cisco_group
+
+CORE2:
+    hostname: 172.16.100.26
+    groups:
+        - cisco_group
+
+CORE3:
+    hostname: 172.16.100.30
+    groups:
+        - cisco_group
+
+CORE4:
+    hostname: 172.16.100.34
+    groups:
+        - cisco_group
+
+PE3:
+    hostname: 172.16.100.38
+    groups:
+        - cisco_group
+PE4:
+    hostname: 172.16.100.42
+    groups:
+        - cisco_group
+
+PE5:
+    hostname: 172.16.100.46
+    groups:
+        - cisco_group
+

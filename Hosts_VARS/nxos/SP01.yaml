@@ -1,0 +1,38 @@
+---
+
+device_type: "spine"
+
+interfaces:
+    - name: lo0 #Used for OSPF RID
+      ip: 10.1.1.1
+      mask: 255.255.255.255
+      int_type: "loopback"
+      ospf_area: 0
+    - name: lo1 # Used for Multicast RP Physical Address
+      ip: 10.1.1.2
+      mask: 255.255.255.255
+      int_type: "loopback"
+      ospf_area: 0
+    - name: lo2 #Used for Anycast RP Address, must be same on all RP devices
+      ip: 10.10.10.10
+      mask: 255.255.255.255
+      int_type: "loopback"
+      ospf_area: 0
+    - name: Eth1/1 # To Leaf-01
+      ip: 172.16.50.1
+      mask: 255.255.255.252
+      int_type: "layer3"
+      ospf_area: 0
+    - name: Eth1/2 # To Leaf-02
+      ip: 172.16.50.5
+      mask: 255.255.255.252
+      int_type: "layer3"
+      ospf_area: 0
+    - name: Eth1/3 # To Leaf-03
+      ip: 172.16.50.9
+      mask: 255.255.255.252
+      int_type: "layer3"
+      ospf_area: 0
+ospf:
+    rid: 10.1.1.1
+    proc_id: 127

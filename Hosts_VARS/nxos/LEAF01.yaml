@@ -1,0 +1,47 @@
+---
+
+device_type: "leaf"
+
+interfaces:
+    - name: lo0 #Used for OSPF RID & VTEP/VNI Tunnel Source Address
+      ip: 10.3.1.1
+      mask: 255.255.255.255
+      int_type: "loopback"
+      ospf_area: 0
+    - name: Eth1/1 # To SP-01
+      ip: 172.16.50.2
+      mask: 255.255.255.252
+      int_type: "layer3"
+      ospf_area: 0
+    - name: Eth1/2 # To SP-02
+      ip: 172.16.50.14
+      mask: 255.255.255.252
+      int_type: "layer3"
+      ospf_area: 0
+    - name: Eth1/3 # To vPC1-VLAN10 & VNI 10010
+      vlan_id: 10
+      int_type: "access"
+    - name: Eth1/4 # To vPC2-VLAN20 & VNI 10020
+      vlan_id: 20
+      int_type: "access"
+    - name: Eth1/5 # To vPC6-VLAN20 & VNI 10020
+      vlan_id: 20
+      int_type: "access"
+    - name: nve1 # VTEP/NVE interface used to connect VxLAN overlay (VNI) with underlay
+      int_type: "vtep"
+      vtep_src: lo0
+      members:
+          - vni: 10010
+            mcast_group: 239.0.10.1
+          - vni: 10020
+            mcast_group: 239.0.20.1
+ospf:
+    rid: 10.3.1.1
+    proc_id: 127
+vlans:
+    - vlan_id: 10
+      vni: True
+      vni_id: 10010
+    - vlan_id: 20
+      vni: True
+      vni_id: 10020
